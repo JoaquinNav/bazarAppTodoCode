@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -13,13 +14,17 @@ import java.util.UUID;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID productId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_product")
+    private Long idProduct;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private String brand;
     @Column(nullable = false)
     private double cost;
-
+    @ManyToMany(mappedBy = "products")
+    private List<Sale> sales;
+    @OneToOne(mappedBy = "aProduct")
+    Stock stock;
 }

@@ -1,9 +1,6 @@
 package model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,8 +14,14 @@ import java.util.UUID;
 @Entity
 public class Stock {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID idStock;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idStock;
+    @Column(unique = true, nullable = false)
     private int amount;
+    @Column(nullable = false)
     private LocalDate updateDate;
+    @Column(nullable = false)
+    @OneToOne
+    @JoinColumn(name = "fk_id_product")
+    private Product aProduct;
 }
