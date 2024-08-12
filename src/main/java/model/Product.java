@@ -7,20 +7,19 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-public class Client {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID idClient;
-    @Column(unique = true, nullable = false)
+    private UUID productId;
+    @Column(nullable = false)
     private String name;
-    @Column(unique = true, nullable = false)
-    private String lastName;
-    @Column(unique = true, nullable = false)
-    private String dni;
+    @Column(nullable = false)
+    private String brand;
+    @Column(nullable = false)
+    private double cost;
 
 }
